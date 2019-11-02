@@ -1,0 +1,36 @@
+/* Show/hide past courses, depending on hidden attribute */
+.list-group-item[data-parent-key="pastcourses"][data-hidden="0"] {
+    display: block;
+}
+/* Hide all second-level nav drawer items which have the attribute hidden. */
+.list-group-item[data-parent-key="pastcourses"][data-hidden="1"] {
+    display: none;
+}
+
+/* Add the icon for the expanded node state. */
+.jsenabled .list-group-item[data-key="pastcourses"][data-isexpandable="1"][data-collapse="0"] > div::after {
+    content: "\f0d7";
+    font-family: FontAwesome;
+    font-size: 1.2rem;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.55rem;
+}
+/* Add the icon for the collapsed node state. */
+.jsenabled .list-group-item[data-key="pastcourses"][data-isexpandable="1"][data-collapse="1"] > div::after {
+    content: "\f0da";
+    font-family: FontAwesome;
+    font-size: 1.2rem;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.55rem;
+}
+/* Make sure that the icon does not overlap with the node text. */
+.jsenabled .list-group-item[data-key="pastcourses"][data-isexpandable="1"] > div {
+    padding-right: 1rem;
+}
+/* Set the cursor for the collapsible nodes.
+*/
+.jsenabled .list-group-item[data-key="pastcourses"][data-isexpandable="1"] {
+    cursor: pointer;
+}
