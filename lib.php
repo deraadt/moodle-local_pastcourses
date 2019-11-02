@@ -39,26 +39,26 @@ function local_pastcourses_extend_navigation(global_navigation $navigation) {
 
     // Get list of past courses.
     $usercourses = enrol_get_users_courses($USER->id, true, array('enddate'), 'sortorder');
-    $pastcoures = array_filter($usercourses, function($course) {
+    $pastcourses = array_filter($usercourses, function($course) {
         $classify = course_classify_for_timeline($course);
         return $classify == COURSE_TIMELINE_PAST;
     });
 
-    if (!empty($pastcoures)) {
+    if (!empty($pastcourses)) {
 
         // Create top custom node.
         $nodetitle = get_string('pastcourses', 'local_pastcourses');
-        $pastcouresnode = local_pastcourses_create_custom_node(
+        $pastcoursesnode = local_pastcourses_create_custom_node(
             $nodetitle,
             null,
             'pastcourses',
             global_navigation::TYPE_CUSTOM,
             false
         );
-        $navigation->add_node($pastcouresnode, null);
+        $navigation->add_node($pastcoursesnode, null);
 
         // Add past courses to the navigation.
-        foreach ($pastcoures as $key => $pastcourse) {
+        foreach ($pastcourses as $key => $pastcourse) {
 
             // Check if adding the current course.
             if ($pastcourse->id == $COURSE->id) {
@@ -74,7 +74,7 @@ function local_pastcourses_extend_navigation(global_navigation $navigation) {
                 true
             );
             $nodecounter++;
-            $pastcouresnode->add_node($coursenode, null);
+            $pastcoursesnode->add_node($coursenode, null);
         }
 
         $PAGE->requires->js_call_amd('local_pastcourses/pastcourses', 'init', ['pastcourses', $keepexpanded]);
