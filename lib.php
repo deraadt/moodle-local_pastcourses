@@ -38,7 +38,7 @@ function local_pastcourses_extend_navigation(global_navigation $navigation) {
     $keepexpanded = 0;
 
     // Get list of past courses.
-    $usercourses = enrol_get_users_courses($USER->id, true, array('enddate'));
+    $usercourses = enrol_get_users_courses($USER->id, true, array('enddate'), 'sortorder');
     $pastcoures = array_filter($usercourses, function($course) {
         $classify = course_classify_for_timeline($course);
         return $classify == COURSE_TIMELINE_PAST;
